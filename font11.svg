@@ -1,0 +1,20 @@
+﻿<?xml version='1.0' standalone='no'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns='http://www.w3.org/2000/svg'>
+<defs>
+<font id='Webdings' horiz-adv-x=''>
+<font-face units-per-em='1024' ascent='819' descent='205' />
+<glyph unicode='&#32;' horiz-adv-x='512'  d='' />
+<glyph unicode='&#48;' horiz-adv-x='1024'  d='M768 -96L256,-96L256,32L768,32Z' />
+<glyph unicode='&#49;' horiz-adv-x='1024'  d='M896 -96L128,-96L128,608L896,608ZM832 -32L832,480L192,480L192,-32Z' />
+<glyph unicode='&#50;' horiz-adv-x='1024'  d='M896 160L704,160L704,-96L128,-96L128,352L320,352L320,608L896,608ZM832 224L832,480L384,480L384,352L704,352L704,224ZM640 -32L640,224L192,224L192,-32Z' />
+<glyph unicode='&#51;' horiz-adv-x='1024'  d='M576 0L256,320L576,640Z' />
+<glyph unicode='&#52;' horiz-adv-x='1024'  d='M704 320L384,0L384,640Z' />
+<glyph unicode='&#53;' horiz-adv-x='1024'  d='M800 160L160,160L480,480Z' />
+<glyph unicode='&#54;' horiz-adv-x='1024'  d='M800 416L480,96L160,416Z' />
+<glyph unicode='&#55;' horiz-adv-x='1024'  d='M801 -32L481,288L801,608ZM456 -32L136,288L456,608Z' />
+<glyph unicode='&#56;' horiz-adv-x='1024'  d='M886 288L566,-32L566,608ZM541 288L221,-32L221,608Z' />
+<glyph unicode='&#57;' horiz-adv-x='1024'  d='M886 -32L566,288L886,608ZM541 -32L221,288L541,608ZM208 -32L144,-32L144,608L208,608Z' />
+<glyph unicode='&#61560;' horiz-adv-x='1024'  d='M923 306Q923,136 803,16Q683,-104 513,-104Q343,-104 223,16Q103,136 103,306Q103,476 223,596Q343,716 513,716Q683,716 803,596Q923,476 923,306M857 306Q857,448 756,549Q656,650 513,650Q386,650 289,568L774,83Q857,179 857,306M726 36L243,519Q169,426 169,306Q169,164 270,63Q371,-38 514,-38Q632,-38 726,36' />
+</font>
+</defs></svg>

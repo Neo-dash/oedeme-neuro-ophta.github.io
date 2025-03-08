@@ -1,0 +1,124 @@
+﻿<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> sample iframe with navigation </title>
+ </head>
+	<script>
+
+	var slideIndex = 1;
+	var slideCount;
+
+	if(window.addEventListener){
+		//use postMessage to communicate with iframe to avoid cross-domain denial
+		function receiveMessage(event){
+			var dataArr = event.data.split(':')
+			switch(dataArr[0]){
+				case "getSlideIndex": 
+					slideIndex = dataArr[1]
+					break;
+				case "getSlideCount":
+					slideCount = dataArr[1]
+					onSlideIndexChange(slideIndex);
+					break;
+				case "onSlideIndexChange":
+					onSlideIndexChange(dataArr[1]);
+					break;
+			}
+		}
+
+		window.addEventListener("message", receiveMessage, false);
+	}
+
+	function callIframe(action){
+		var ifr = document.getElementById("ifr").contentWindow;
+		var msg //use postMessage to communicate with iframe
+		switch(action){
+			case 'first':				
+				msg = "clipActionFirstSlide"
+				break;
+			case 'prev':				
+				msg = "clipActionPrevSlide"
+				break;
+			case 'prevbuild':				
+				msg = "stepBackAnimation"
+				break;
+			case 'nextbuild':				
+				msg = "stepAnimation"
+				break;
+			case 'next':				
+				msg = "clipActionNextSlide"
+				break;
+			case 'last':				
+				msg = "clipActionLastSlide"
+				break;
+			case 'play':
+				msg = "playAnimation"
+				break;
+			case 'pause':
+				msg = "stopAnimation"
+				break;
+		}
+
+		if(window.addEventListener){
+			//if support postMessage
+			ifr.postMessage(msg,"*");
+		}else{
+			ifr[msg]() //call iframe function directly for IE6-7
+		}
+	}
+
+	function onSlideIndexChange(newSlideIndex){
+		//event called from slidego player
+		var ifr = document.getElementById("ifr").contentWindow;	
+		slideIndex = newSlideIndex
+		document.getElementById("slideCount").innerHTML = slideIndex + "/" + slideCount;
+	}
+
+	window.onload = function(){
+		//update slideCount
+		
+		var ifr = document.getElementById("ifr").contentWindow;
+		if(window.addEventListener){
+			ifr.postMessage("getSlideCount?","*");
+		}else{
+			slideCount = ifr.getSlideCount()
+		}
+	}
+
+	document.onkeydown = function(ev){
+		var keyCode = (ev && 'which' in ev) ? ev.which : event.keyCode;
+		
+		switch(keyCode){
+			case 33: //PgUp				
+			case 37: //LEFT
+			case 38: //UP
+				callIframe('prevbuild');
+				break;
+			case 34://PgDown
+			case 39: //right
+			case 40: //down	
+				callIframe('nextbuild');			
+				break;			
+		}
+	}
+
+	</script>
+ <body>
+ <div align="center">
+  <iframe id="ifr" src="source.html" frameborder=0 scrolling=no  style="border:1px solid #000000; width:720px; height:540px;"></iframe>
+  </div>
+  <div align="center">
+  <button onclick="callIframe('first')" title="first slide">|&lt;</button>
+  <button onclick="callIframe('prev')" title="previous slide">&lt;&lt;</button>
+  <button onclick="callIframe('prevbuild')" title="prev build">&lt;</button>
+  <button onclick="callIframe('nextbuild')" title="next build">&gt;</button>
+  <button onclick="callIframe('next')" title="next slide">&gt;&gt;</button>
+  <button onclick="callIframe('last')" title="last slide">&gt;|</button>
+  <br>
+  <button onclick="callIframe('pause')" title="pause">pause</button>
+  <button onclick="callIframe('play')" title="play">continue</button>
+  <br>
+  <span id="slideCount"></span>
+  </div>
+ </body>
+</html>
